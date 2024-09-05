@@ -1,0 +1,86 @@
+#Valor da Variável SOMA#
+INDICE = 13
+SOMA = 0
+K = 0
+
+while K < INDICE:
+    K = K + 1
+    SOMA = SOMA + K
+
+print(SOMA)
+
+#Verificar se um Número Pertence à Sequência de Fibonacci#
+def is_fibonacci(n):
+    if n < 0:
+        return False
+    
+    a, b = 0, 1
+    while a < n:
+        a, b = b, a + b
+    
+    return a == n
+
+# Exemplo de uso
+numero = int(input("Informe um número: "))
+if is_fibonacci(numero):
+    print(f"{numero} pertence à sequência de Fibonacci.")
+else:
+    print(f"{numero} não pertence à sequência de Fibonacci.")
+
+#Análise de Faturamento Diário#
+import json
+
+# Exemplo de dados JSON
+faturamento_diario = '''
+{
+    "1": 200.50,
+    "2": 150.00,
+    "3": 300.75,
+    "4": 0,
+    "5": 400.00,
+    "6": 250.00,
+    "7": 0,
+    "8": 350.00
+}
+'''
+
+dados = json.loads(faturamento_diario)
+faturamentos = list(dados.values())
+dias_com_faturamento = [valor for valor in faturamentos if valor > 0]
+
+menor_faturamento = min(dias_com_faturamento)
+maior_faturamento = max(dias_com_faturamento)
+media_faturamento = sum(dias_com_faturamento) / len(dias_com_faturamento)
+
+dias_acima_da_media = sum(1 for valor in dias_com_faturamento if valor > media_faturamento)
+
+print(f"Menor valor de faturamento: R${menor_faturamento:.2f}")
+print(f"Maior valor de faturamento: R${maior_faturamento:.2f}")
+print(f"Número de dias acima da média: {dias_acima_da_media}")
+
+#Cálculo Percentual de Representação#
+faturamento = {
+    "SP": 67836.43,
+    "RJ": 36678.66,
+    "MG": 29229.88,
+    "ES": 27165.48,
+    "Outros": 19849.53
+}
+
+total = sum(faturamento.values())
+
+percentuais = {estado: (valor / total) * 100 for estado, valor in faturamento.items()}
+
+for estado, percentual in percentuais.items():
+    print(f"{estado}: {percentual:.2f}%")
+
+#Inverter os Caracteres de uma String#
+def inverter_string(s):
+    invertida = ""
+    for char in s:
+        invertida = char + invertida
+    return invertida
+
+# Exemplo de uso
+string = input("Informe uma string: ")
+print("String invertida:", inverter_string(string))
